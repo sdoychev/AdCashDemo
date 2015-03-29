@@ -17,7 +17,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 /**
- * Created by Doychev on 29.3.2015 г..
+ * Created by Doychev on 29.3.2015 г.
  */
 public class DownloadTask extends AsyncTask<String, Integer, ArrayList<Deal>> {
 
@@ -45,7 +45,7 @@ public class DownloadTask extends AsyncTask<String, Integer, ArrayList<Deal>> {
             xmlPullParser.setInput(new InputStreamReader(is));
 
             int eventType = xmlPullParser.getEventType();
-            while (eventType != XmlPullParser.END_DOCUMENT && itemCount < Contants.ITEM_LIMIT) {
+            while (eventType != XmlPullParser.END_DOCUMENT && itemCount < Constants.ITEM_LIMIT) {
                 if (eventType == XmlPullParser.START_TAG) {
                     if (xmlPullParser.getName().equals("PictureURL")) {
                         picInfo = true;

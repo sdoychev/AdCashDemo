@@ -30,14 +30,14 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 downloadDeals();
+                addDealsToDb();
             }
         });
     }
 
     private void downloadDeals() {
-
         DownloadTask dealsDownload = new DownloadTask();
-        dealsDownload.execute("http://deals.ebay.com/feeds/xml");
+        dealsDownload.execute(Constants.DOWNLOAD_URL);
         try {
             deals = dealsDownload.get();
         } catch (InterruptedException e) {
@@ -45,11 +45,11 @@ public class MainActivity extends ActionBarActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        int i = 0;
-        for (Deal deal : deals) {
-            i++;
-            Log.e("DEAL", "" + i);
-        }
+    }
+
+    private void addDealsToDb() {
+        DatabaseTask dbTask = new DatabaseTask(deals, this);
+        dbTask.execute();
     }
 
     public void showList(View v) {
