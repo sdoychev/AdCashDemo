@@ -1,9 +1,8 @@
 <resources>
-    <string name="app_name">AdCashDemo</string>
+    <string name="app_name">Ad Cash Demo App</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="title_activity_list_view">Top Deals</string>
+
     <string name="get_deals">Get deals</string>
     <string name="show_list">Show list</string>
-    <string name="export_database">Export Database</string>
 </resources>
