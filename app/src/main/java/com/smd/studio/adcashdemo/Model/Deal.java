@@ -1,4 +1,4 @@
-package com.smd.studio.adcashdemo;
+package com.smd.studio.adcashdemo.Model;
 
 /**
  * Created by Doychev on 29.3.2015 г.
@@ -9,7 +9,7 @@ public class Deal {
     private String webLink;
     private String imageLink;
 
-    Deal(String title, String webLink, String imageLing) {
+    public Deal(String title, String webLink, String imageLing) {
         this.title = title;
         this.webLink = webLink;
         this.imageLink = imageLing;

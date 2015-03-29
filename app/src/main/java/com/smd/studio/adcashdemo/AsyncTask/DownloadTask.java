@@ -1,10 +1,11 @@
-package com.smd.studio.adcashdemo;
+package com.smd.studio.adcashdemo.AsyncTask;
 
 import android.os.AsyncTask;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+import com.smd.studio.adcashdemo.Constants;
+import com.smd.studio.adcashdemo.Model.Deal;
+
+import org.apache.http.HttpStatus;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -12,8 +13,8 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -34,15 +35,19 @@ public class DownloadTask extends AsyncTask<String, Integer, ArrayList<Deal>> {
         String picInfoStr = "";
 
         try {
-            DefaultHttpClient client = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(new URI(params[0]));
-            HttpResponse httpResponse = client.execute(httpGet);
-            InputStream is = httpResponse.getEntity().getContent();
+            HttpURLConnection urlConnection;
+            URL url = new URL(params[0]);
+            urlConnection = (HttpURLConnection) url.openConnection();
+            int statusCode = urlConnection.getResponseCode();
+            if (statusCode != HttpStatus.SC_OK) {
+                return null;
+            }
+            InputStream inputStream = urlConnection.getInputStream();
 
             XmlPullParserFactory xmlPullParserFactory = XmlPullParserFactory.newInstance();
             xmlPullParserFactory.setNamespaceAware(true);
             XmlPullParser xmlPullParser = xmlPullParserFactory.newPullParser();
-            xmlPullParser.setInput(new InputStreamReader(is));
+            xmlPullParser.setInput(new InputStreamReader(inputStream));
 
             int eventType = xmlPullParser.getEventType();
             while (eventType != XmlPullParser.END_DOCUMENT && itemCount < Constants.ITEM_LIMIT) {
@@ -78,8 +83,6 @@ public class DownloadTask extends AsyncTask<String, Integer, ArrayList<Deal>> {
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
             e.printStackTrace();
         }
         return dealList;

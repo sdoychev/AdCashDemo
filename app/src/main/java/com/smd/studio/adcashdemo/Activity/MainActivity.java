@@ -1,10 +1,16 @@
-package com.smd.studio.adcashdemo;
+package com.smd.studio.adcashdemo.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
+
+import com.smd.studio.adcashdemo.AsyncTask.DatabaseTask;
+import com.smd.studio.adcashdemo.AsyncTask.DownloadTask;
+import com.smd.studio.adcashdemo.Constants;
+import com.smd.studio.adcashdemo.Model.Deal;
+import com.smd.studio.adcashdemo.R;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;

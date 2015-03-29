@@ -11,7 +11,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_DB = " CREATE TABLE " + Constants.TABLE_NAME +
             " (" +
-            "_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             Constants.COLUMN_NAME_TITLE + " TEXT NOT NULL, " +
             Constants.COLUMN_NAME_WEB_LINK + " TEXT NOT NULL, " +
             Constants.COLUMN_NAME_IMAGE_LINK + " TEXT NOT NULL " +

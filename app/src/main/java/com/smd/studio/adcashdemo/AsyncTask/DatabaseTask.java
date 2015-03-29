@@ -1,9 +1,13 @@
-package com.smd.studio.adcashdemo;
+package com.smd.studio.adcashdemo.AsyncTask;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+
+import com.smd.studio.adcashdemo.Constants;
+import com.smd.studio.adcashdemo.DBHelper;
+import com.smd.studio.adcashdemo.Model.Deal;
 
 import java.util.ArrayList;
 
@@ -15,7 +19,7 @@ public class DatabaseTask extends AsyncTask<String, Void, Void> {
     ArrayList<Deal> deals;
     Context context;
 
-    DatabaseTask(ArrayList<Deal> deals, Context context) {
+    public DatabaseTask(ArrayList<Deal> deals, Context context) {
         this.deals = deals;
         this.context = context;
     }
