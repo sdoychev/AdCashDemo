@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import com.smd.studio.adcashdemo.Constants;
 import com.smd.studio.adcashdemo.DBHelper;
@@ -34,6 +35,12 @@ public class DatabaseTask extends AsyncTask<String, Void, Void> {
             addDealToDB(deal, db);
         }
         return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        super.onPostExecute(aVoid);
+        Toast.makeText(context, "Deals downloaded!", Toast.LENGTH_LONG).show();
     }
 
     private void addDealToDB(Deal deal, SQLiteDatabase database) {
